@@ -102,6 +102,8 @@ for i in range(NUM_TILES):
     for y in range(h):
         tile[y] = tile[y].ljust(w)
 
+### parameters for drawing
+
 CELL_WIDTH = 10
 CELL_GAP = 1
 CELL_UNIT = CELL_WIDTH + CELL_GAP
@@ -116,7 +118,8 @@ BOARD_LEFT = (640 - BOARD_WIDTH) / 2
 BOARD_TOP = (480 - BOARD_WIDTH) / 2
 TILE_SPACE_RIGHT = BOARD_LEFT - TILE_GAP
 TILE_SPACE_LEFT = TILE_GAP
-# decide position
+
+### decide drawing position
 
 x = TILE_SPACE_LEFT
 y = BOARD_TOP
@@ -149,7 +152,8 @@ for i in range(NUM_TILES):
     next_ystep = max(next_ystep, h * CELL_UNIT + TILE_GAP)
     x = right + TILE_GAP
 
-# debug output as HTML
+### debug output as HTML
+
 fo = open('tmp.html', 'w')
 TEMPLATE = "<span style='position: absolute; left: %d; top: %d; width: %d; height: %d; background: %s;'> </span>"
 fo.write(TEMPLATE % (0, 0, 640, 480, 'lightgrey'))
@@ -169,7 +173,7 @@ for rpos in right_tile_positions:
     for left, top in rpos:
         fo.write(TEMPLATE % (left, top, CELL_WIDTH, CELL_WIDTH, 'purple'))
 
-# generate verilog for drawing
+### generate verilog for drawing
 
 ## given
 # x == hcount - 144, y == vcount - 35
@@ -185,8 +189,10 @@ def rect(left, top, width, height):
         % (left + 144, left + 144 + width, top + 35, top + 35 + height))
 
 def template(cond, color):
-    fo.write("%s ? 6'" % cond + bin(color)[1:] + ":\n")
+    fo.write("%s ? " % cond + color + ":\n")
 
+ORANGE = "6'b111000"
+PURPLE = "6'b010011"
 for i in range(NUM_CELL_PER_LINE):
     for j in range(NUM_CELL_PER_LINE):
         left = BOARD_LEFT + BCELL_GAP + i * BCELL_UNIT
@@ -194,9 +200,9 @@ for i in range(NUM_CELL_PER_LINE):
         w = BCELL_WIDTH
         pos = i * NUM_CELL_PER_LINE + j
         template(
-            rect(left, top, w, w) + " && board[%d][0]" % pos, 0b111000)
+            rect(left, top, w, w) + " && board[%d][0]" % pos, ORANGE)
         template(
-            rect(left, top, w, w) + " && board[%d][1]" % pos, 0b010011)
+            rect(left, top, w, w) + " && board[%d][1]" % pos, PURPLE)
 
 """
 TODO
@@ -211,4 +217,46 @@ for rpos in right_tile_positions:
         fo.write(TEMPLATE % (left, top, CELL_WIDTH, CELL_WIDTH, 'purple'))
 """
 
-fo.write(";");
+fo.write("6'111111;");
+
+### valid hand
+for i in range(NUM_TILES):
+    w = widths[i]
+    h = heights[i]
+    broaden = [[0] * (w + 2) for _i in range(h + 2)]
+    tile = tiles[i]
+    for y in range(h):
+        for x in range(w):
+            if tile[y][x] != ' ':
+                broaden[y + 1][x + 1] |= 0b100
+                # edge
+                broaden[y + 0][x + 1] |= 0b10
+                broaden[y + 1][x + 0] |= 0b10
+                broaden[y + 2][x + 1] |= 0b10
+                broaden[y + 1][x + 2] |= 0b10
+                # corner
+                broaden[y + 0][x + 0] |= 0b1
+                broaden[y + 0][x + 2] |= 0b1
+                broaden[y + 2][x + 0] |= 0b1
+                broaden[y + 2][x + 2] |= 0b1
+            if tile[y][x] == 'x':
+                center = x + 1 + (y + 1) * NUM_CELL_PER_LINE
+
+    for y in range(h + 2):
+        for x in range(w + 2):
+            v = broaden[y][x]
+            if v & 0b100:
+                v = 0b100
+            elif v & 0b10:
+                v = 0b10
+            elif v & 0b1:
+                v = 0b1
+            else:
+                v = 0b0
+
+    for y in range(h + 2):
+        for x in range(w + 2):
+            pass
+            'TODO:座標+3bitの列を吐く、長さセットで'
+            '100のところの座標の列を吐く、長さセットで？ハードな回路で？'
+            'center'
