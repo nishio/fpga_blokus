@@ -9,7 +9,8 @@
 - 合法手判定
 - 交互にランダムに打つ(合法手判定が正しく動いているか確認): バグの再現性のために乱数シードを固定する機能が必要
 - ボタンとスイッチで人間がプレイできるようにする(この時点ではAIはただのランダム)
-- モンテカルロ(UCB1) プレイアウトを画面に表示しながらやる、AIは今後のために別ファイルで
+- AIをJavaRockで作れるようにする。AIは別ファイルにして、手軽に切り替えられるようにする。
+- モンテカルロ(UCB1)AI プレイアウトを画面に表示しながらやる
 - ←UCBが最大である合法手を見つけるルーチンはどうやるのが良いか？合法手は最大で32000個程度。2個ずつ比較したら15クロック？
 - ←UCBの計算、まじめにlogやsqrtをやるのは馬鹿らしい。どう手を抜くか？
 - モンテカルロ同士で何百回か対戦させて勝率を確認できるようにする AIを改善していくために。
@@ -25,5 +26,6 @@ Memo
 
 - DE0:  Device Family: CycloneIII, Package: FBGA, Pin count: 484, Speed grade: 6, EP3C16F484C6
 - Menu -> Assignment -> Import Assignments -> "pin_assign,csv"
-
+- http://lut.eee.u-ryukyu.ac.jp/dc13/rules.html
+- 15200 bps, no parity and 1 stop bit
 
