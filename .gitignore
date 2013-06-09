@@ -3,3 +3,6 @@
 output_files
 db
 incremental_db
+*_log.txt
+greybox_tmp
+.sopc_builder
