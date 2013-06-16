@@ -3,112 +3,16 @@
 ブロック関連のVerilogを出力するためのスクリプト
 """
 
-data = """
-x
-
-x
-o
-
-o
-x
-o
-
-o
-xo
-
-o
-x
-o
-o
-
- o
- x
-oo
-
-o
-xo
-o
-
-xo
-oo
-
-ox
- oo
-
-o
-o
-x
-o
-o
-
- o
- o
- x
-oo
-
- o
- o
-ox
-o
-
- o
-ox
-oo
-
-oo
- x
-oo
-
-o
-xo
-o
-o
-
- o
- x
-ooo
-
-o
-o
-xoo
-
-oo
- xo
-  o
-
-o
-oxo
-  o
-
-o
-oxo
- o
-
- o
-oxo
- o
-"""
-
-NUM_TILES = 21
-tiles = [x.strip('\n').split('\n') for x in data.split('\n\n')]
-assert len(tiles) == NUM_TILES
-heights = map(len, tiles)
-widths = [max(len(line) for line in x) for x in tiles]
-
-for i in range(NUM_TILES):
-    w = widths[i]
-    h = heights[i]
-    tile = tiles[i]
-    for y in range(h):
-        tile[y] = tile[y].ljust(w)
+from block_def import tiles, NUM_TILES, widths, heights
 
 ### parameters for drawing
 
 CELL_WIDTH = 7
 CELL_GAP = 1
 CELL_UNIT = CELL_WIDTH + CELL_GAP
-TILE_GAP = 10
+TILE_GAP = 4
 
+# bcell: cell board
 BCELL_WIDTH = 30
 BCELL_GAP = 2
 BCELL_UNIT = BCELL_WIDTH + BCELL_GAP
@@ -181,13 +85,6 @@ for rpos in right_tile_positions:
 # [20:0] right_available;
 # reg [5:0] board [0:196];
 
-if 0:
-    def if_x(r, v):
-        return "hcount %s %d" % (r, v + 144)
-
-    def if_y(r, v):
-        return "vcount %s %d" % (r, v + 35)
-
 def if_x(r, v):
     return "x %s %d" % (r, v)
 
@@ -200,13 +97,6 @@ def all_and(*xs):
 
 fo = open('tmp.v', 'w')
 fo.write("assign color = \n")
-
-# wireでxとyを作ることができるか？→もとからwireだった
-# コード上で引き算の引き算をした場合に合成結果では最適化されるか？→されるだろJK
-# VGAの出力を4bitに増やす
-# とりあえず中身空っぽで盤の枠の表示
-# RAMの内容の初期化の方法を調べる
-# 手持ちコマRAMの内容を初期化
 
 # board
 is_board = all_and(
@@ -229,6 +119,9 @@ board_cell_color = (
 print is_board
 print is_board_border
 print board_cell_color
+
+print "%d x %d" % (
+    TILE_SPACE_RIGHT - TILE_SPACE_LEFT, BOARD_WIDTH)
 
 #def rect(left, top, width, height):
 #    return (
