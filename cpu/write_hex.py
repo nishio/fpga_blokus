@@ -3,7 +3,7 @@
 hex形式で出力するためのファイル
 """
 
-BITWIDTH = 2  # bytes
+BITWIDTH = 1  # bytes
 NUM_WORDS = 196
 DATA_FORMAT = "%%0%dX" % BITWIDTH
 
