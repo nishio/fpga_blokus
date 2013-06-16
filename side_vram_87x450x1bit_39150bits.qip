@@ -1,0 +1,5 @@
+set_global_assignment -name IP_TOOL_NAME "RAM: 2-PORT"
+set_global_assignment -name IP_TOOL_VERSION "12.1"
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "side_vram_87x450x1bit_39150bits.v"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "side_vram_87x450x1bit_39150bits_inst.v"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "side_vram_87x450x1bit_39150bits_bb.v"]

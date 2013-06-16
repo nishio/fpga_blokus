@@ -18,6 +18,17 @@ module VGA(clk, hsync, vsync, rgb_out);
 	.q ( board_vram_out )
 	);
 
+	wire leftside_out;
+	wire [15:0] leftside_addr;
+	side_vram_87x450x1bit_39150bits side_vram_87x450x1bit_39150bits_inst (
+        .clock ( clk ),
+        .data ( 0 ),
+        .rdaddress ( leftside_addr ),
+        .wraddress ( 0 ),
+        .wren ( 0 ),
+        .q ( leftside_out )
+        );
+
 `include "VGA_clock_handling.v"
 
 	assign x = hcount - 10'd144;
