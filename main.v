@@ -9,5 +9,5 @@ module main(switch, dip, clk, led, hsync, vsync, rgb);
 	
 	assign led = dip;
 	
-	//VGA vga_inst(clk);
+	VGA vga_inst(clk, hsync, vsync, rgb);
 endmodule
