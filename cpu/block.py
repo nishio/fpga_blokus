@@ -85,13 +85,13 @@ print "%d x %d" % (
 
 BOARD_RIGHT = BOARD_LEFT + BOARD_WIDTH
 BOARD_BOTTOM = BOARD_TOP + BOARD_WIDTH
-ORANGE = "12'hf70"
-PURPLE = "12'h70f"
+ORANGE = "12'he70"
+PURPLE = "12'h70e"
 
 fo.write("""
 	assign board_x = (x - {BOARD_LEFT}) / {BCELL_UNIT};
 	assign board_y = (y - {BOARD_TOP}) / {BCELL_UNIT};
-	assign  board_vram_addr = x + y * {NUM_CELL_PER_LINE};
+	assign board_vram_addr = board_x + board_y * {NUM_CELL_PER_LINE};
 
 	assign color =
 	x >= {BOARD_LEFT} && y >= {BOARD_TOP} && x < {BOARD_RIGHT} && y < {BOARD_BOTTOM} ? (
