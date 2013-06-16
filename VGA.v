@@ -29,6 +29,10 @@ module VGA(clk, hsync, vsync, rgb_out);
         .q ( leftside_out )
         );
 
+	wire rightside_out;
+	wire [15:0] rightside_addr;
+	assign rightside_out = rightside_addr[5];
+	
 `include "VGA_clock_handling.v"
 
 	assign x = hcount - 10'd144;
