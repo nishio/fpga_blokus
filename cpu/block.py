@@ -90,10 +90,10 @@ ORANGE = "12'he70"
 PURPLE = "12'h70e"
 
 fo.write("""
-    assign board_x = (x - {BOARD_LEFT}) / {BCELL_UNIT};
-    assign board_y = (y - {BOARD_TOP}) / {BCELL_UNIT};
-    assign board_vram_addr = board_x + board_y * 8'd{NUM_CELL_PER_LINE};
-    assign leftside_addr = x + y * {SIDEBAR_WIDTH};
+    assign board_x = ((x - {BOARD_LEFT}) / {BCELL_UNIT})[3:0];
+    assign board_y = ((y - {BOARD_TOP}) / {BCELL_UNIT})[3:0];
+    assign board_vram_addr = (board_x + board_y * d{NUM_CELL_PER_LINE})[7:0];
+    assign leftside_addr = x - {TILE_SPACE_LEFT} + (y - {BOARD_TOP}) * {SIDEBAR_WIDTH};
     assign rightside_addr = 640 * 480 - leftside_addr;
 
     assign color =
@@ -103,8 +103,8 @@ fo.write("""
         board_vram_out & 6'b000100 ? {PURPLE} :
         12'hddd
     ) :
-    x < {BOARD_LEFT} & leftside_out ? {ORANGE}:
-    x >= {BOARD_RIGHT} & rightside_out ? {PURPLE}:
+    (x < {BOARD_LEFT}) & leftside_out ? {ORANGE}:
+    (x >= {BOARD_RIGHT}) & rightside_out ? {PURPLE}:
     12'heee
     ;
 """.format(**locals()))
