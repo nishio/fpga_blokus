@@ -79,90 +79,35 @@ for rpos in right_tile_positions:
 
 ### generate verilog for drawing
 
-## given
-# x == hcount - 144, y == vcount - 35
-# [20:0] left_available;
-# [20:0] right_available;
-# reg [5:0] board [0:196];
-
-def if_x(r, v):
-    return "x %s %d" % (r, v)
-
-def if_y(r, v):
-    return "y %s %d" % (r, v)
-
-
-def all_and(*xs):
-    return ' && '.join(xs)
-
-fo = open('tmp.v', 'w')
-fo.write("assign color = \n")
-
-# board
-is_board = all_and(
-    if_x(">=", BOARD_LEFT),
-    if_y(">=", BOARD_TOP),
-    if_x("<=", BOARD_LEFT + BOARD_WIDTH),
-    if_y("<=", BOARD_TOP + BOARD_WIDTH))
-
-is_board_border = (
-    "(x - %(BOARD_LEFT)d) %% %(BCELL_UNIT)d < 2"
-    " || "
-    "(y - %(BOARD_TOP)d) %% %(BCELL_UNIT)d < 2"
-) % locals()
-
-board_cell_color = (
-    "board[{(x - %(BOARD_LEFT)d) / %(BCELL_UNIT)d, "
-    "(y - %(BOARD_TOP)d) %% %(BCELL_UNIT)d}]"
-) % locals()
-
-print is_board
-print is_board_border
-print board_cell_color
-
+fo = open('VGA_drawing.v', 'w')
 print "%d x %d" % (
     TILE_SPACE_RIGHT - TILE_SPACE_LEFT, BOARD_WIDTH)
 
-#def rect(left, top, width, height):
-#    return (
-#        "hcount > %d && hcount < %d && vcount > %d && vcount < %d"
-#        % (left + 144, left + 144 + width, top + 35, top + 35 + height))
+BOARD_RIGHT = BOARD_LEFT + BOARD_WIDTH
+BOARD_BOTTOM = BOARD_TOP + BOARD_WIDTH
+ORANGE = "12'hf70"
+PURPLE = "12'h70f"
 
-def rect(left, top, width, height):
-    return (
-        "x >= %d && x < %d && y >= %d && y < %d"
-        % (left, left + width, top, top + height))
+fo.write("""
+	assign board_x = (x - {BOARD_LEFT}) / {BCELL_UNIT};
+	assign board_y = (y - {BOARD_TOP}) / {BCELL_UNIT};
+	assign  board_vram_addr = x + y * {NUM_CELL_PER_LINE};
 
-def template(cond, color):
-    fo.write("%s ? " % cond + color + ":\n")
+	assign color =
+	x >= {BOARD_LEFT} && y >= {BOARD_TOP} && x < {BOARD_RIGHT} && y < {BOARD_BOTTOM} ? (
+		(x - {BOARD_LEFT}) % {BCELL_UNIT} < {BCELL_GAP} || (y - {BOARD_TOP}) % {BCELL_UNIT} < {BCELL_GAP} ? 12'hccc :
+		board_vram_out & 6'b100000 ? {ORANGE} :
+		board_vram_out & 6'b000100 ? {PURPLE} :
+		12'hddd
+	) :
+	x < {BOARD_LEFT} ? (x + y):
+	x >= {BOARD_RIGHT} ? (x * y):
+	12'heee
+	;
+""".format(**locals()))
 
-ORANGE = "6'b111000"
-PURPLE = "6'b010011"
-for i in range(NUM_CELL_PER_LINE):
-    for j in range(NUM_CELL_PER_LINE):
-        left = BOARD_LEFT + BCELL_GAP + i * BCELL_UNIT
-        top = BOARD_TOP + BCELL_GAP + j * BCELL_UNIT
-        w = BCELL_WIDTH
-        pos = i * NUM_CELL_PER_LINE + j
-        template(
-            rect(left, top, w, w) + " && board[%d][0]" % pos, ORANGE)
-        template(
-            rect(left, top, w, w) + " && board[%d][1]" % pos, PURPLE)
 
-"""
-TODO
 
-fo.write(TEMPLATE % (BOARD_LEFT, BOARD_TOP, BOARD_WIDTH, BOARD_WIDTH, 'grey'))
-
-for lpos in left_tile_positions:
-    for left, top in lpos:
-        fo.write(TEMPLATE % (left, top, CELL_WIDTH, CELL_WIDTH, 'orange'))
-for rpos in right_tile_positions:
-    for left, top in rpos:
-        fo.write(TEMPLATE % (left, top, CELL_WIDTH, CELL_WIDTH, 'purple'))
-"""
-
-fo.write("6'111111;");
 
 ### valid hand
 for i in range(NUM_TILES):
