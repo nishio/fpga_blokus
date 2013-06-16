@@ -6,6 +6,7 @@ module VGA(clk, hsync, vsync, rgb_out);
 	wire [11:0]color;
 	wire [9:0]x, y;
 
+	wire [3:0] board_x, board_y;
 	wire [5:0] board_vram_out;
 	wire [7:0] board_vram_addr;
 	board_vram_14x14x6bit	board_vram_14x14x6bit_inst (

@@ -1,7 +1,7 @@
 
 	assign board_x = (x - 95) / 32;
 	assign board_y = (y - 15) / 32;
-	assign  board_vram_addr = x + y * 14;
+	assign  board_vram_addr = x + y * 8'd14;
 
 	assign color =
 	x >= 95 && y >= 15 && x < 545 && y < 465 ? (
