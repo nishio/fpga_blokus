@@ -9,7 +9,8 @@ NUM_WORDS = 196
 DATA_FORMAT = "%%0%dX" % NUM_CHAR
 MAX_VALUE = 256 ** BYTES
 
-data_map = {74: 0b100000, 196 - 75: 0b000100}
+POS = 4 + 14 * 4
+data_map = {POS: 0b100000, 196 - POS: 0b000100}
 
 for addr in range(NUM_WORDS):
     data = data_map.get(addr, 0)
