@@ -1,30 +1,17 @@
-module VGA(clk, rgb_out, hsync, vsync, write_addr, wdata, write_en, reset_vram);
+module VGA(clk, hsync, vsync, rgb_out);
 	input clk;
-	output [2:0]rgb_out;
 	output hsync, vsync;
+	output [11:0]rgb_out;
 
-	// VRAM
-	input [19:0]write_addr;
-	input wdata, write_en, reset_vram;
+	wire [11:0]color;
+
+	wire [9:0]x, y;
+	//wire [9:0]dx, dy;
+	//wire q_sig;
+	//reg rgb_reg;
 
 	reg vga_clk, i_hs, i_vs, i_hdisp, i_vdisp;
-	reg rgb_reg;
 	reg [9:0]hcount, vcount;
-	wire [9:0]x, y;
-	wire [9:0]dx, dy;
-	wire q_sig;
-	wire [2:0]color;
-
-	wire [19:0]read_addr;
-	RAM2pot	RAM2pot_inst (
-		.aclr ( reset_vram ),
-		.clock ( clk ),
-		.data ( wdata ),
-		.rdaddress ( read_addr ),
-		.wraddress ( write_addr ),
-		.wren ( write_en ),
-		.q ( q_sig )
-	);
 
 	always @(posedge clk) begin
 		vga_clk = ~vga_clk;
@@ -72,12 +59,15 @@ module VGA(clk, rgb_out, hsync, vsync, write_addr, wdata, write_en, reset_vram);
 			i_vdisp = 0;
 	end
 
+	assign hsync = i_hs;
+	assign vsync = i_vs;
+
+	
 	assign x = hcount - 10'd144;
 	assign y = vcount - 10'd35;
 	//	assign read_addr = x + y * 20'd640;
-	assign read_addr = (x / 20'd4) + (y / 20'd4) * 20'd160;
-	assign hsync = i_hs;
-	assign vsync = i_vs;
-	assign color = q_sig & ~(x[1:0] == 0 | y[1:0] == 0) ? 3'b001 : 3'b111;
-	assign rgb_out = (i_hdisp & i_vdisp) ? color : 3'b000;
+	// assign read_addr = (x / 20'd4) + (y / 20'd4) * 20'd160;
+	//assign color = q_sig & ~(x[1:0] == 0 | y[1:0] == 0) ? 3'b001 : 3'b111;
+	assign color = x * y;
+	assign rgb_out = (i_hdisp & i_vdisp) ? color : 12'h000;
 endmodule
