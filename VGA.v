@@ -68,6 +68,13 @@ module VGA(clk, hsync, vsync, rgb_out);
 	//	assign read_addr = x + y * 20'd640;
 	// assign read_addr = (x / 20'd4) + (y / 20'd4) * 20'd160;
 	//assign color = q_sig & ~(x[1:0] == 0 | y[1:0] == 0) ? 3'b001 : 3'b111;
-	assign color = x * y;
+	assign color = 
+	x >= 95 && y >= 15 && x < 545 && y < 465 ? (
+		(x - 95) % 32 < 2 || (y - 15) % 32 < 2 ? 12'haaa :
+		((x - 95) / 32 + (y - 15) / 32) % 2 ? 12'hf70 :
+		12'h70f
+	) :	
+	12'heee
+	;
 	assign rgb_out = (i_hdisp & i_vdisp) ? color : 12'h000;
 endmodule
