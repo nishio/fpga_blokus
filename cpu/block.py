@@ -85,27 +85,44 @@ print "%d x %d" % (
 
 BOARD_RIGHT = BOARD_LEFT + BOARD_WIDTH
 BOARD_BOTTOM = BOARD_TOP + BOARD_WIDTH
-ORANGE = "12'hf70"
-PURPLE = "12'h70f"
+SIDEBAR_WIDTH = TILE_SPACE_RIGHT - TILE_SPACE_LEFT
+ORANGE = "12'he70"
+PURPLE = "12'h70e"
 
 fo.write("""
-	assign board_x = (x - {BOARD_LEFT}) / {BCELL_UNIT};
-	assign board_y = (y - {BOARD_TOP}) / {BCELL_UNIT};
-	assign  board_vram_addr = x + y * {NUM_CELL_PER_LINE};
+    assign board_x = (x - {BOARD_LEFT}) / {BCELL_UNIT};
+    assign board_y = (y - {BOARD_TOP}) / {BCELL_UNIT};
+    assign board_vram_addr = board_x + board_y * 8'd{NUM_CELL_PER_LINE};
+    assign leftside_addr = x + y * {SIDEBAR_WIDTH};
+    assign rightside_addr = 640 * 480 - leftside_addr;
 
-	assign color =
-	x >= {BOARD_LEFT} && y >= {BOARD_TOP} && x < {BOARD_RIGHT} && y < {BOARD_BOTTOM} ? (
-		(x - {BOARD_LEFT}) % {BCELL_UNIT} < {BCELL_GAP} || (y - {BOARD_TOP}) % {BCELL_UNIT} < {BCELL_GAP} ? 12'hccc :
-		board_vram_out & 6'b100000 ? {ORANGE} :
-		board_vram_out & 6'b000100 ? {PURPLE} :
-		12'hddd
-	) :
-	x < {BOARD_LEFT} ? (x + y):
-	x >= {BOARD_RIGHT} ? (x * y):
-	12'heee
-	;
+    assign color =
+    x >= {BOARD_LEFT} && y >= {BOARD_TOP} && x < {BOARD_RIGHT} && y < {BOARD_BOTTOM} ? (
+        (x - {BOARD_LEFT}) % {BCELL_UNIT} < {BCELL_GAP} || (y - {BOARD_TOP}) % {BCELL_UNIT} < {BCELL_GAP} ? 12'hccc :
+        board_vram_out & 6'b100000 ? {ORANGE} :
+        board_vram_out & 6'b000100 ? {PURPLE} :
+        12'hddd
+    ) :
+    x < {BOARD_LEFT} & leftside_out ? {ORANGE}:
+    x >= {BOARD_RIGHT} & rightside_out ? {PURPLE}:
+    12'heee
+    ;
 """.format(**locals()))
 
+## sidebar
+
+bitmap = {}
+for lpos in left_tile_positions:
+    for left, top in lpos:
+        x = left - TILE_SPACE_LEFT
+        y = top - BOARD_TOP
+        for dx in range(CELL_WIDTH):
+            for dy in range(CELL_WIDTH):
+                pos = x + dx + (y + dy) * SIDEBAR_WIDTH
+                bitmap[pos] = 1
+
+import write_mif
+write_mif.write(bitmap)
 
 
 
