@@ -16,14 +16,14 @@ for addr in range(NUM_WORDS):
     assert 0 <= data < MAX_VALUE
 
     checksum = 256 - (
-        BITWIDTH +
+        BYTES +
         (addr / 256) + (addr % 256) +
         data) % 256
 
     datas = DATA_FORMAT % data
     print (
         ":"
-        "%(BITWIDTH)02X"
+        "%(BYTES)02X"
         "%(addr)04X"
         "00"  # means 'data record'
         "%(datas)s"
