@@ -3,14 +3,18 @@
 hex形式で出力するためのファイル
 """
 
-BITWIDTH = 1  # bytes
+BYTES = 1
+NUM_CHAR = BYTES * 2
 NUM_WORDS = 196
-DATA_FORMAT = "%%0%dX" % BITWIDTH
+DATA_FORMAT = "%%0%dX" % NUM_CHAR
+MAX_VALUE = 256 ** BYTES
 
 data_map = {74: 0b100000, 196 - 75: 0b000100}
 
 for addr in range(NUM_WORDS):
     data = data_map.get(addr, 0)
+    assert 0 <= data < MAX_VALUE
+
     checksum = 256 - (
         BITWIDTH +
         (addr / 256) + (addr % 256) +
