@@ -104,13 +104,13 @@ for i in range(NUM_TILES):
 
 ### parameters for drawing
 
-CELL_WIDTH = 10
+CELL_WIDTH = 7
 CELL_GAP = 1
 CELL_UNIT = CELL_WIDTH + CELL_GAP
-TILE_GAP = 5
+TILE_GAP = 10
 
 BCELL_WIDTH = 30
-BCELL_GAP = CELL_GAP
+BCELL_GAP = 2
 BCELL_UNIT = BCELL_WIDTH + BCELL_GAP
 NUM_CELL_PER_LINE = 14
 BOARD_WIDTH = BCELL_WIDTH * NUM_CELL_PER_LINE + BCELL_GAP * (NUM_CELL_PER_LINE + 1)
@@ -181,12 +181,64 @@ for rpos in right_tile_positions:
 # [20:0] right_available;
 # reg [5:0] board [0:196];
 
+if 0:
+    def if_x(r, v):
+        return "hcount %s %d" % (r, v + 144)
+
+    def if_y(r, v):
+        return "vcount %s %d" % (r, v + 35)
+
+def if_x(r, v):
+    return "x %s %d" % (r, v)
+
+def if_y(r, v):
+    return "y %s %d" % (r, v)
+
+
+def all_and(*xs):
+    return ' && '.join(xs)
+
 fo = open('tmp.v', 'w')
 fo.write("assign color = \n")
+
+# wireでxとyを作ることができるか？→もとからwireだった
+# コード上で引き算の引き算をした場合に合成結果では最適化されるか？→されるだろJK
+# VGAの出力を4bitに増やす
+# とりあえず中身空っぽで盤の枠の表示
+# RAMの内容の初期化の方法を調べる
+# 手持ちコマRAMの内容を初期化
+
+# board
+is_board = all_and(
+    if_x(">=", BOARD_LEFT),
+    if_y(">=", BOARD_TOP),
+    if_x("<=", BOARD_LEFT + BOARD_WIDTH),
+    if_y("<=", BOARD_TOP + BOARD_WIDTH))
+
+is_board_border = (
+    "(x - %(BOARD_LEFT)d) %% %(BCELL_UNIT)d < 2"
+    " || "
+    "(y - %(BOARD_TOP)d) %% %(BCELL_UNIT)d < 2"
+) % locals()
+
+board_cell_color = (
+    "board[{(x - %(BOARD_LEFT)d) / %(BCELL_UNIT)d, "
+    "(y - %(BOARD_TOP)d) %% %(BCELL_UNIT)d}]"
+) % locals()
+
+print is_board
+print is_board_border
+print board_cell_color
+
+#def rect(left, top, width, height):
+#    return (
+#        "hcount > %d && hcount < %d && vcount > %d && vcount < %d"
+#        % (left + 144, left + 144 + width, top + 35, top + 35 + height))
+
 def rect(left, top, width, height):
     return (
-        "hcount > %d && hcount < %d && vcount > %d && vcount < %d"
-        % (left + 144, left + 144 + width, top + 35, top + 35 + height))
+        "x >= %d && x < %d && y >= %d && y < %d"
+        % (left, left + width, top, top + height))
 
 def template(cond, color):
     fo.write("%s ? " % cond + color + ":\n")
