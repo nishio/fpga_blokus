@@ -130,7 +130,8 @@ write_mif.write(bitmap)
 for i in range(NUM_TILES):
     w = widths[i]
     h = heights[i]
-    broaden = [[0] * (w + 2) for _i in range(h + 2)]
+    #broaden = [[0] * (w + 2) for _i in range(h + 2)]
+    broaden = [[0] * 5 for _i in range(7)] # 5x7
     tile = tiles[i]
     for y in range(h):
         for x in range(w):
@@ -149,8 +150,8 @@ for i in range(NUM_TILES):
             if tile[y][x] == 'x':
                 center = x + 1 + (y + 1) * NUM_CELL_PER_LINE
 
-    for y in range(h + 2):
-        for x in range(w + 2):
+    for y in range(7):
+        for x in range(5):
             v = broaden[y][x]
             if v & 0b100:
                 v = 0b100
@@ -160,10 +161,12 @@ for i in range(NUM_TILES):
                 v = 0b1
             else:
                 v = 0b0
+            #print ' .+ *'[v],
+            broaden[y][x] = v
+        #print
 
-    for y in range(h + 2):
-        for x in range(w + 2):
-            pass
-            'TODO:座標+3bitの列を吐く、長さセットで'
-            '100のところの座標の列を吐く、長さセットで？ハードな回路で？'
-            'center'
+    print center
+    for y in range(7):
+        for x in range(5):
+            print broaden[y][x],
+    print
