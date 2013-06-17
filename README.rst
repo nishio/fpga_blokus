@@ -27,6 +27,7 @@ done: ボードの表示はできた。サイドバーの表示は完成して�
 todo: 合法手を交互に選んでランダムプレイアウト
 
 - ピースのパターンをROMに入れる、正立、回転 横5 x 縦7 x 3bit x 21種類 x 8方位 = 17640bit
+- むしろピースの回転は配線でできるから入れなくていい？
 - ピースの中心がどこであるか(0~34)を6bitで表現
 
 - ボードはたかが14x14に1マスの番兵を加えて225マス、1マスあたり6bit、LEを使ったシフトレジスタで実現(1350LE、使いすぎ？でもモンテカルロをやる上で合法手の列挙はボトルネックになる。これくらい使っていいのでは)
@@ -73,3 +74,9 @@ Reference
   http://www.amazon.co.jp/dp/4774148393
 - [3] 三好 健文 "Hello Worldから始めるFPGA入門", インターフェースZERO, No.04
   http://www.amazon.co.jp/dp/478984935X
+- [4] "BlokusDuo/JavaRock" http://www.wasamon.net/miyo/index.cgi?page=Diary%2F2013%2D6%2D11 2013-06-17確認
+- [5] "続BlokusDuo/JavaRock" http://www.wasamon.net/miyo/index.cgi?page=Diary%2F2013%2D6%2D12 2013-06-17確認
+- [6] "続続BlokusDuo/JavaRock" http://www.wasamon.net/miyo/index.cgi?page=Diary%2F2013-6-13 2013-06-17確認
+- [7] "ブロックスデュオ プログラム対戦 結果 - iroriの日記" http://d.hatena.ne.jp/Irori/20071104/1194151812 2013-06-17確認
+- [8] "JavaRock" http://sourceforge.net/projects/javarock/files/20130612/ 2013-06-17確認
+
