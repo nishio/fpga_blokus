@@ -7,7 +7,7 @@ from block_def import tiles, NUM_TILES, widths, heights
 
 ### parameters for drawing
 
-CELL_WIDTH = 7
+CELL_WIDTH = 5
 CELL_GAP = 1
 CELL_UNIT = CELL_WIDTH + CELL_GAP
 TILE_GAP = 4
@@ -21,7 +21,7 @@ BOARD_WIDTH = BCELL_WIDTH * NUM_CELL_PER_LINE + BCELL_GAP * (NUM_CELL_PER_LINE +
 BOARD_LEFT = (640 - BOARD_WIDTH) / 2
 BOARD_TOP = (480 - BOARD_WIDTH) / 2
 TILE_SPACE_RIGHT = BOARD_LEFT - TILE_GAP
-TILE_SPACE_LEFT = TILE_GAP
+TILE_SPACE_LEFT = TILE_GAP * 12
 
 ### decide drawing position
 

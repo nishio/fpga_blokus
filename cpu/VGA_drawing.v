@@ -2,7 +2,7 @@
     assign board_x = ((x - 95) / 32)[3:0];
     assign board_y = ((y - 15) / 32)[3:0];
     assign board_vram_addr = (board_x + board_y * d14)[7:0];
-    assign leftside_addr = x - 4 + (y - 15) * 87;
+    assign leftside_addr = x - 48 + (y - 15) * 43;
     assign rightside_addr = 640 * 480 - leftside_addr;
 
     assign color =
