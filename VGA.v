@@ -31,7 +31,14 @@ module VGA(clk, hsync, vsync, rgb_out);
 
 	wire rightside_out;
 	wire [15:0] rightside_addr;
-	assign rightside_out = rightside_addr[5];
+	side_vram_87x450x1bit_39150bits side_vram_87x450x1bit_39150bits_inst2 (
+        .clock ( clk ),
+        .data ( 0 ),
+        .rdaddress ( rightside_addr ),
+        .wraddress ( 0 ),
+        .wren ( 0 ),
+        .q ( rightside_out )
+        );
 	
 `include "VGA_clock_handling.v"
 
