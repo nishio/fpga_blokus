@@ -20,12 +20,18 @@ NUM_CELL_PER_LINE = 14
 BOARD_WIDTH = BCELL_WIDTH * NUM_CELL_PER_LINE + BCELL_GAP * (NUM_CELL_PER_LINE + 1)
 BOARD_LEFT = (640 - BOARD_WIDTH) / 2
 BOARD_TOP = (480 - BOARD_WIDTH) / 2
-TILE_SPACE_RIGHT = BOARD_LEFT - TILE_GAP
-TILE_SPACE_LEFT = TILE_GAP * 12
+BOARD_RIGHT = BOARD_LEFT + BOARD_WIDTH
+BOARD_BOTTOM = BOARD_TOP + BOARD_WIDTH
+
+SIDEBAR_WIDTH = 43
+LSIDE_RIGHT = BOARD_LEFT - TILE_GAP
+LSIDE_LEFT = LSIDE_RIGHT - SIDEBAR_WIDTH
+RSIDE_LEFT = BOARD_RIGHT + TILE_GAP
+RSIDE_RIGHT = RSIDE_LEFT + SIDEBAR_WIDTH
 
 ### decide drawing position
 
-x = TILE_SPACE_LEFT
+x = LSIDE_LEFT
 y = BOARD_TOP
 next_ystep = 0
 left_tile_positions = []
@@ -35,9 +41,9 @@ for i in range(NUM_TILES):
     h = heights[i]
     tile = tiles[i]
     right = x + w * CELL_UNIT
-    if right >= TILE_SPACE_RIGHT:
-        right = right - (x - TILE_SPACE_LEFT)
-        x = TILE_SPACE_LEFT
+    if right >= LSIDE_RIGHT:
+        right = right - (x - LSIDE_LEFT)
+        x = LSIDE_LEFT
         y += next_ystep
         next_ystep = 0
 
@@ -81,11 +87,8 @@ for rpos in right_tile_positions:
 
 fo = open('VGA_drawing.v', 'w')
 print "%d x %d" % (
-    TILE_SPACE_RIGHT - TILE_SPACE_LEFT, BOARD_WIDTH)
+    LSIDE_RIGHT - LSIDE_LEFT, BOARD_WIDTH)
 
-BOARD_RIGHT = BOARD_LEFT + BOARD_WIDTH
-BOARD_BOTTOM = BOARD_TOP + BOARD_WIDTH
-SIDEBAR_WIDTH = TILE_SPACE_RIGHT - TILE_SPACE_LEFT
 ORANGE = "12'he70"
 PURPLE = "12'h70e"
 
@@ -93,7 +96,7 @@ fo.write("""
     assign board_x = ((x - {BOARD_LEFT}) / {BCELL_UNIT})[3:0];
     assign board_y = ((y - {BOARD_TOP}) / {BCELL_UNIT})[3:0];
     assign board_vram_addr = (board_x + board_y * d{NUM_CELL_PER_LINE})[7:0];
-    assign leftside_addr = x - {TILE_SPACE_LEFT} + (y - {BOARD_TOP}) * {SIDEBAR_WIDTH};
+    assign leftside_addr = x - {LSIDE_LEFT} + (y - {BOARD_TOP}) * {SIDEBAR_WIDTH};
     assign rightside_addr = 640 * 480 - leftside_addr;
 
     assign color =
@@ -103,8 +106,8 @@ fo.write("""
         board_vram_out & 6'b000100 ? {PURPLE} :
         12'hddd
     ) :
-    (x < {BOARD_LEFT}) & leftside_out ? {ORANGE}:
-    (x >= {BOARD_RIGHT}) & rightside_out ? {PURPLE}:
+    (x < {LSIDE_RIGHT} && x >= {LSIDE_LEFT}) & leftside_out ? {ORANGE}:
+    (x < {RSIDE_RIGHT} && x >= {RSIDE_LEFT}) & rightside_out ? {PURPLE}:
     12'heee
     ;
 """.format(**locals()))
@@ -114,7 +117,7 @@ fo.write("""
 bitmap = {}
 for lpos in left_tile_positions:
     for left, top in lpos:
-        x = left - TILE_SPACE_LEFT
+        x = left - LSIDE_LEFT
         y = top - BOARD_TOP
         for dx in range(CELL_WIDTH):
             for dy in range(CELL_WIDTH):

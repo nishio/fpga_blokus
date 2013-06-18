@@ -12,7 +12,7 @@
         board_vram_out & 6'b000100 ? 12'h70e :
         12'hddd
     ) :
-    (x < 95) & leftside_out ? 12'he70:
-    (x >= 545) & rightside_out ? 12'h70e:
+    (x < 91 && x >= 48) & leftside_out ? 12'he70:
+    (x < 592 && x >= 549) & rightside_out ? 12'h70e:
     12'heee
     ;
