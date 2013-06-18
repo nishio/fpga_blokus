@@ -3,7 +3,7 @@
     assign board_y = (y - 15) / 32;
     assign board_vram_addr = board_x + board_y * 14;
     assign leftside_addr = x - 48 + (y - 15) * 43;
-    assign rightside_addr = 640 * 480 - leftside_addr;
+    assign rightside_addr = 19350 - (x - 549 + (y - 15) * 43);
 
     assign color =
     x >= 95 && y >= 15 && x < 545 && y < 465 ? (

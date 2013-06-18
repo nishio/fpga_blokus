@@ -86,8 +86,9 @@ for rpos in right_tile_positions:
 ### generate verilog for drawing
 
 fo = open('VGA_drawing.v', 'w')
-print "%d x %d" % (
-    LSIDE_RIGHT - LSIDE_LEFT, BOARD_WIDTH)
+SIDE_VRAM_SIZE = SIDEBAR_WIDTH * BOARD_WIDTH
+print "%d x %d = %d" % (
+    SIDEBAR_WIDTH, BOARD_WIDTH, SIDE_VRAM_SIZE)
 
 ORANGE = "12'he70"
 PURPLE = "12'h70e"
@@ -97,7 +98,7 @@ fo.write("""
     assign board_y = ((y - {BOARD_TOP}) / {BCELL_UNIT})[3:0];
     assign board_vram_addr = (board_x + board_y * d{NUM_CELL_PER_LINE})[7:0];
     assign leftside_addr = x - {LSIDE_LEFT} + (y - {BOARD_TOP}) * {SIDEBAR_WIDTH};
-    assign rightside_addr = 640 * 480 - leftside_addr;
+    assign rightside_addr = {SIDE_VRAM_SIZE} - (x - {RSIDE_LEFT} + (y - {BOARD_TOP}) * {SIDEBAR_WIDTH});
 
     assign color =
     x >= {BOARD_LEFT} && y >= {BOARD_TOP} && x < {BOARD_RIGHT} && y < {BOARD_BOTTOM} ? (
