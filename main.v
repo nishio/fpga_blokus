@@ -7,7 +7,10 @@ module main(switch, dip, clk, led, hsync, vsync, rgb);
 	output hsync, vsync;
 	output [11:0] rgb;
 	
-	assign led = dip;
+//	assign led = dip;
 	
-	VGA vga_inst(clk, hsync, vsync, rgb);
+//	VGA vga_inst(clk, hsync, vsync, rgb);
+	fpga_blokus_sopc sopc_inst(
+		clk, switch, led[7:0]
+	);
 endmodule

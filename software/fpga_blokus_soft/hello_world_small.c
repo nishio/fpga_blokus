@@ -79,13 +79,19 @@
  */
 
 #include "sys/alt_stdio.h"
+#include "system.h"
+#include "altera_avalon_pio_regs.h"
 
 int main()
 { 
-  alt_putstr("Hello from Nios II!\n");
+  alt_putstr("Hello from Nios II! Now!\n");
 
   /* Event loop never exits. */
-  while (1);
+  int out = 0;
+  while (1){
+	  out++;
+	  IOWR_ALTERA_AVALON_PIO_DATA(PIO_0_BASE, out);
+  }
 
   return 0;
 }

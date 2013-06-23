@@ -77,7 +77,7 @@ LOAD c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/
                 0x00002020                PROVIDE (__ram_exceptions_end, ABSOLUTE (.))
                 0x00002020                PROVIDE (__flash_exceptions_start, LOADADDR (.exceptions))
 
-.text           0x00002020      0x230
+.text           0x00002020      0x240
                 0x00002020                PROVIDE (stext, ABSOLUTE (.))
  *(.interp)
  *(.hash)
@@ -124,144 +124,144 @@ LOAD c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/
  *(.text .stub .text.* .gnu.linkonce.t.*)
  .text          0x00002020       0x4c ../fpga_blokus_soft_bsp//obj/HAL/src/crt0.o
                 0x00002020                _start
- .text          0x0000206c       0x18 obj/default/hello_world_small.o
+ .text          0x0000206c       0x28 obj/default/hello_world_small.o
                 0x0000206c                main
- .text          0x00002084       0x8c ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
-                0x000020a4                alt_load
- .text          0x00002110       0x2c ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
-                0x00002110                alt_main
- .text          0x0000213c       0x38 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_putstr.o)
-                0x0000213c                alt_putstr
- .text          0x00002174       0x24 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
-                0x00002174                alt_sys_init
-                0x00002178                alt_irq_init
- .text          0x00002198       0x34 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
-                0x00002198                altera_avalon_jtag_uart_write
- .text          0x000021cc       0x18 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
-                0x000021cc                alt_dcache_flush_all
- .text          0x000021e4        0xc ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
-                0x000021e4                alt_icache_flush_all
- .text          0x000021f0        0x8 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_nios2_irq.o)
-                0x000021f0                altera_nios2_irq_init
- .text          0x000021f8       0x38 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush.o)
-                0x000021f8                alt_icache_flush
- .text          0x00002230       0x20 c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
-                0x00002230                strlen
+ .text          0x00002094       0x8c ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
+                0x000020b4                alt_load
+ .text          0x00002120       0x2c ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
+                0x00002120                alt_main
+ .text          0x0000214c       0x38 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_putstr.o)
+                0x0000214c                alt_putstr
+ .text          0x00002184       0x24 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
+                0x00002184                alt_sys_init
+                0x00002188                alt_irq_init
+ .text          0x000021a8       0x34 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+                0x000021a8                altera_avalon_jtag_uart_write
+ .text          0x000021dc       0x18 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+                0x000021dc                alt_dcache_flush_all
+ .text          0x000021f4        0xc ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+                0x000021f4                alt_icache_flush_all
+ .text          0x00002200        0x8 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_nios2_irq.o)
+                0x00002200                altera_nios2_irq_init
+ .text          0x00002208       0x38 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush.o)
+                0x00002208                alt_icache_flush
+ .text          0x00002240       0x20 c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
+                0x00002240                strlen
  *(.gnu.warning.*)
  *(.fini)
-                0x00002250                PROVIDE (__etext, ABSOLUTE (.))
-                0x00002250                PROVIDE (_etext, ABSOLUTE (.))
-                0x00002250                PROVIDE (etext, ABSOLUTE (.))
+                0x00002260                PROVIDE (__etext, ABSOLUTE (.))
+                0x00002260                PROVIDE (_etext, ABSOLUTE (.))
+                0x00002260                PROVIDE (etext, ABSOLUTE (.))
  *(.eh_frame_hdr)
-                0x00002250                . = ALIGN (0x4)
-                0x00002250                PROVIDE (__preinit_array_start, ABSOLUTE (.))
+                0x00002260                . = ALIGN (0x4)
+                0x00002260                PROVIDE (__preinit_array_start, ABSOLUTE (.))
  *(.preinit_array)
-                0x00002250                PROVIDE (__preinit_array_end, ABSOLUTE (.))
-                0x00002250                PROVIDE (__init_array_start, ABSOLUTE (.))
+                0x00002260                PROVIDE (__preinit_array_end, ABSOLUTE (.))
+                0x00002260                PROVIDE (__init_array_start, ABSOLUTE (.))
  *(.init_array)
-                0x00002250                PROVIDE (__init_array_end, ABSOLUTE (.))
-                0x00002250                PROVIDE (__fini_array_start, ABSOLUTE (.))
+                0x00002260                PROVIDE (__init_array_end, ABSOLUTE (.))
+                0x00002260                PROVIDE (__fini_array_start, ABSOLUTE (.))
  *(.fini_array)
-                0x00002250                PROVIDE (__fini_array_end, ABSOLUTE (.))
+                0x00002260                PROVIDE (__fini_array_end, ABSOLUTE (.))
  *(.eh_frame)
  *(.gcc_except_table)
  *(.dynamic)
-                0x00002250                PROVIDE (__CTOR_LIST__, ABSOLUTE (.))
+                0x00002260                PROVIDE (__CTOR_LIST__, ABSOLUTE (.))
  *(.ctors)
  *(SORT(.ctors.*))
-                0x00002250                PROVIDE (__CTOR_END__, ABSOLUTE (.))
-                0x00002250                PROVIDE (__DTOR_LIST__, ABSOLUTE (.))
+                0x00002260                PROVIDE (__CTOR_END__, ABSOLUTE (.))
+                0x00002260                PROVIDE (__DTOR_LIST__, ABSOLUTE (.))
  *(.dtors)
  *(SORT(.dtors.*))
-                0x00002250                PROVIDE (__DTOR_END__, ABSOLUTE (.))
+                0x00002260                PROVIDE (__DTOR_END__, ABSOLUTE (.))
  *(.jcr)
-                0x00002250                . = ALIGN (0x4)
+                0x00002260                . = ALIGN (0x4)
 
-.rodata         0x00002250       0x18
-                0x00002250                PROVIDE (__ram_rodata_start, ABSOLUTE (.))
-                0x00002250                . = ALIGN (0x4)
+.rodata         0x00002260       0x1c
+                0x00002260                PROVIDE (__ram_rodata_start, ABSOLUTE (.))
+                0x00002260                . = ALIGN (0x4)
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.4
-                0x00002250       0x18 obj/default/hello_world_small.o
+                0x00002260       0x1c obj/default/hello_world_small.o
  *(.rodata1)
-                0x00002268                . = ALIGN (0x4)
-                0x00002268                PROVIDE (__ram_rodata_end, ABSOLUTE (.))
-                0x00002250                PROVIDE (__flash_rodata_start, LOADADDR (.rodata))
+                0x0000227c                . = ALIGN (0x4)
+                0x0000227c                PROVIDE (__ram_rodata_end, ABSOLUTE (.))
+                0x00002260                PROVIDE (__flash_rodata_start, LOADADDR (.rodata))
 
-.rwdata         0x00002268        0x4 load address 0x0000226c
-                0x00002268                PROVIDE (__ram_rwdata_start, ABSOLUTE (.))
-                0x00002268                . = ALIGN (0x4)
+.rwdata         0x0000227c        0x4 load address 0x00002280
+                0x0000227c                PROVIDE (__ram_rwdata_start, ABSOLUTE (.))
+                0x0000227c                . = ALIGN (0x4)
  *(.got.plt)
  *(.got)
  *(.data1)
  *(.data .data.* .gnu.linkonce.d.*)
- .data          0x00002268        0x0 ../fpga_blokus_soft_bsp//obj/HAL/src/crt0.o
- .data          0x00002268        0x0 obj/default/hello_world_small.o
- .data          0x00002268        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
- .data          0x00002268        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
- .data          0x00002268        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_putstr.o)
- .data          0x00002268        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
- .data          0x00002268        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
- .data          0x00002268        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
- .data          0x00002268        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
- .data          0x00002268        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_nios2_irq.o)
- .data          0x00002268        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush.o)
- .data          0x00002268        0x0 c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
-                0x0000a268                _gp = ABSOLUTE ((. + 0x8000))
-                0x0000a268                PROVIDE (gp, _gp)
+ .data          0x0000227c        0x0 ../fpga_blokus_soft_bsp//obj/HAL/src/crt0.o
+ .data          0x0000227c        0x0 obj/default/hello_world_small.o
+ .data          0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
+ .data          0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
+ .data          0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_putstr.o)
+ .data          0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .data          0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .data          0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .data          0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .data          0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_nios2_irq.o)
+ .data          0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush.o)
+ .data          0x0000227c        0x0 c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
+                0x0000a27c                _gp = ABSOLUTE ((. + 0x8000))
+                0x0000a27c                PROVIDE (gp, _gp)
  *(.rwdata .rwdata.*)
  *(.sdata .sdata.* .gnu.linkonce.s.*)
- .sdata         0x00002268        0x4 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
-                0x00002268                jtag_uart_0
+ .sdata         0x0000227c        0x4 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
+                0x0000227c                jtag_uart_0
  *(.sdata2 .sdata2.* .gnu.linkonce.s2.*)
-                0x0000226c                . = ALIGN (0x4)
-                0x0000226c                _edata = ABSOLUTE (.)
-                0x0000226c                PROVIDE (edata, ABSOLUTE (.))
-                0x0000226c                PROVIDE (__ram_rwdata_end, ABSOLUTE (.))
-                0x0000226c                PROVIDE (__flash_rwdata_start, LOADADDR (.rwdata))
+                0x00002280                . = ALIGN (0x4)
+                0x00002280                _edata = ABSOLUTE (.)
+                0x00002280                PROVIDE (edata, ABSOLUTE (.))
+                0x00002280                PROVIDE (__ram_rwdata_end, ABSOLUTE (.))
+                0x00002280                PROVIDE (__flash_rwdata_start, LOADADDR (.rwdata))
 
-.bss            0x00002270        0xc
-                0x00002270                __bss_start = ABSOLUTE (.)
-                0x00002270                PROVIDE (__sbss_start, ABSOLUTE (.))
-                0x00002270                PROVIDE (___sbss_start, ABSOLUTE (.))
+.bss            0x00002284        0xc
+                0x00002284                __bss_start = ABSOLUTE (.)
+                0x00002284                PROVIDE (__sbss_start, ABSOLUTE (.))
+                0x00002284                PROVIDE (___sbss_start, ABSOLUTE (.))
  *(.dynsbss)
  *(.sbss .sbss.* .gnu.linkonce.sb.*)
- .sbss          0x00002270        0xc ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
-                0x00002270                alt_argc
-                0x00002274                alt_argv
-                0x00002278                alt_envp
+ .sbss          0x00002284        0xc ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
+                0x00002284                alt_argc
+                0x00002288                alt_argv
+                0x0000228c                alt_envp
  *(.sbss2 .sbss2.* .gnu.linkonce.sb2.*)
  *(.scommon)
-                0x0000227c                PROVIDE (__sbss_end, ABSOLUTE (.))
-                0x0000227c                PROVIDE (___sbss_end, ABSOLUTE (.))
+                0x00002290                PROVIDE (__sbss_end, ABSOLUTE (.))
+                0x00002290                PROVIDE (___sbss_end, ABSOLUTE (.))
  *(.dynbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
- .bss           0x0000227c        0x0 ../fpga_blokus_soft_bsp//obj/HAL/src/crt0.o
- .bss           0x0000227c        0x0 obj/default/hello_world_small.o
- .bss           0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
- .bss           0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
- .bss           0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_putstr.o)
- .bss           0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
- .bss           0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
- .bss           0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
- .bss           0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
- .bss           0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_nios2_irq.o)
- .bss           0x0000227c        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush.o)
- .bss           0x0000227c        0x0 c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
+ .bss           0x00002290        0x0 ../fpga_blokus_soft_bsp//obj/HAL/src/crt0.o
+ .bss           0x00002290        0x0 obj/default/hello_world_small.o
+ .bss           0x00002290        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
+ .bss           0x00002290        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
+ .bss           0x00002290        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_putstr.o)
+ .bss           0x00002290        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .bss           0x00002290        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .bss           0x00002290        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .bss           0x00002290        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .bss           0x00002290        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_nios2_irq.o)
+ .bss           0x00002290        0x0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush.o)
+ .bss           0x00002290        0x0 c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
  *(COMMON)
-                0x0000227c                . = ALIGN (0x4)
-                0x0000227c                __bss_end = ABSOLUTE (.)
+                0x00002290                . = ALIGN (0x4)
+                0x00002290                __bss_end = ABSOLUTE (.)
 
 .onchip_memory2_0
-                0x0000227c        0x0
-                0x0000227c                PROVIDE (_alt_partition_onchip_memory2_0_start, ABSOLUTE (.))
+                0x00002290        0x0
+                0x00002290                PROVIDE (_alt_partition_onchip_memory2_0_start, ABSOLUTE (.))
  *(.onchip_memory2_0. onchip_memory2_0.*)
-                0x0000227c                . = ALIGN (0x4)
-                0x0000227c                PROVIDE (_alt_partition_onchip_memory2_0_end, ABSOLUTE (.))
-                0x0000227c                _end = ABSOLUTE (.)
-                0x0000227c                end = ABSOLUTE (.)
-                0x0000227c                __alt_stack_base = ABSOLUTE (.)
-                0x0000227c                PROVIDE (_alt_partition_onchip_memory2_0_load_addr, LOADADDR (.onchip_memory2_0))
+                0x00002290                . = ALIGN (0x4)
+                0x00002290                PROVIDE (_alt_partition_onchip_memory2_0_end, ABSOLUTE (.))
+                0x00002290                _end = ABSOLUTE (.)
+                0x00002290                end = ABSOLUTE (.)
+                0x00002290                __alt_stack_base = ABSOLUTE (.)
+                0x00002290                PROVIDE (_alt_partition_onchip_memory2_0_load_addr, LOADADDR (.onchip_memory2_0))
 
 .stab
  *(.stab)
@@ -361,50 +361,50 @@ LOAD c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/
  .debug_pubnames
                 0x000001c2       0x1d c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
 
-.debug_info     0x00000000      0xa31
+.debug_info     0x00000000      0xa7b
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000       0x78 ../fpga_blokus_soft_bsp//obj/HAL/src/crt0.o
- .debug_info    0x00000078       0x45 obj/default/hello_world_small.o
- .debug_info    0x000000bd      0x12e ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
- .debug_info    0x000001eb      0x125 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
- .debug_info    0x00000310       0xc5 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_putstr.o)
- .debug_info    0x000003d5      0x17d ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
- .debug_info    0x00000552      0x18f ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
- .debug_info    0x000006e1       0x9f ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
- .debug_info    0x00000780       0x8d ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
- .debug_info    0x0000080d       0x8d ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_nios2_irq.o)
- .debug_info    0x0000089a       0xd5 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush.o)
- .debug_info    0x0000096f       0xc2 c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
+ .debug_info    0x00000078       0x8f obj/default/hello_world_small.o
+ .debug_info    0x00000107      0x12e ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_info    0x00000235      0x125 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_info    0x0000035a       0xc5 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_info    0x0000041f      0x17d ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_info    0x0000059c      0x18f ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_info    0x0000072b       0x9f ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_info    0x000007ca       0x8d ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_info    0x00000857       0x8d ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_nios2_irq.o)
+ .debug_info    0x000008e4       0xd5 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush.o)
+ .debug_info    0x000009b9       0xc2 c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
 
-.debug_abbrev   0x00000000      0x5aa
+.debug_abbrev   0x00000000      0x5c6
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0x12 ../fpga_blokus_soft_bsp//obj/HAL/src/crt0.o
- .debug_abbrev  0x00000012       0x34 obj/default/hello_world_small.o
- .debug_abbrev  0x00000046       0x97 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
- .debug_abbrev  0x000000dd       0xa6 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
- .debug_abbrev  0x00000183       0x7c ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_putstr.o)
- .debug_abbrev  0x000001ff       0xe3 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
- .debug_abbrev  0x000002e2       0xf0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
- .debug_abbrev  0x000003d2       0x57 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
- .debug_abbrev  0x00000429       0x3f ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
- .debug_abbrev  0x00000468       0x3f ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_nios2_irq.o)
- .debug_abbrev  0x000004a7       0x89 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush.o)
- .debug_abbrev  0x00000530       0x7a c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
+ .debug_abbrev  0x00000012       0x50 obj/default/hello_world_small.o
+ .debug_abbrev  0x00000062       0x97 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_abbrev  0x000000f9       0xa6 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_abbrev  0x0000019f       0x7c ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_abbrev  0x0000021b       0xe3 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_abbrev  0x000002fe       0xf0 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_abbrev  0x000003ee       0x57 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_abbrev  0x00000445       0x3f ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_abbrev  0x00000484       0x3f ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_nios2_irq.o)
+ .debug_abbrev  0x000004c3       0x89 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush.o)
+ .debug_abbrev  0x0000054c       0x7a c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
 
-.debug_line     0x00000000     0x1706
+.debug_line     0x00000000     0x1746
  *(.debug_line)
  .debug_line    0x00000000       0x72 ../fpga_blokus_soft_bsp//obj/HAL/src/crt0.o
- .debug_line    0x00000072       0xdf obj/default/hello_world_small.o
- .debug_line    0x00000151      0x217 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
- .debug_line    0x00000368      0x2c2 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
- .debug_line    0x0000062a      0x1d9 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_putstr.o)
- .debug_line    0x00000803      0x286 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
- .debug_line    0x00000a89      0x2f4 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
- .debug_line    0x00000d7d      0x1cd ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
- .debug_line    0x00000f4a      0x1c5 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
- .debug_line    0x0000110f      0x1c9 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_nios2_irq.o)
- .debug_line    0x000012d8      0x1e1 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush.o)
- .debug_line    0x000014b9      0x24d c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
+ .debug_line    0x00000072      0x11f obj/default/hello_world_small.o
+ .debug_line    0x00000191      0x217 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_line    0x000003a8      0x2c2 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_line    0x0000066a      0x1d9 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_line    0x00000843      0x286 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_line    0x00000ac9      0x2f4 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_line    0x00000dbd      0x1cd ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_line    0x00000f8a      0x1c5 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_line    0x0000114f      0x1c9 ../fpga_blokus_soft_bsp/\libhal_bsp.a(altera_nios2_irq.o)
+ .debug_line    0x00001318      0x1e1 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_icache_flush.o)
+ .debug_line    0x000014f9      0x24d c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/4.1.2/../../../../nios2-elf/lib\libsmallc.a(lib_a-strlen.o)
 
 .debug_frame    0x00000000      0x1a8
  *(.debug_frame)
@@ -422,9 +422,9 @@ LOAD c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/
 
 .debug_str      0x00000000      0x527
  *(.debug_str)
- .debug_str     0x00000000       0x63 obj/default/hello_world_small.o
-                                 0x68 (size before relaxing)
- .debug_str     0x00000063      0x188 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_str     0x00000000       0xb3 obj/default/hello_world_small.o
+                                 0xdf (size before relaxing)
+ .debug_str     0x000000b3      0x138 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_load.o)
                                 0x1cd (size before relaxing)
  .debug_str     0x000001eb       0x75 ../fpga_blokus_soft_bsp/\libhal_bsp.a(alt_main.o)
                                 0x151 (size before relaxing)
@@ -478,8 +478,8 @@ LOAD c:/altera/12.1sp1/nios2eds/bin/gnu/h-i686-mingw32/bin/../lib/gcc/nios2-elf/
                 0x00000000       0x30 ../fpga_blokus_soft_bsp//obj/HAL/src/crt0.o
                 0x00004000                __alt_data_end = 0x4000
                 0x00004000                PROVIDE (__alt_stack_pointer, __alt_data_end)
-                0x0000227c                PROVIDE (__alt_stack_limit, __alt_stack_base)
-                0x0000227c                PROVIDE (__alt_heap_start, end)
+                0x00002290                PROVIDE (__alt_stack_limit, __alt_stack_base)
+                0x00002290                PROVIDE (__alt_heap_start, end)
                 0x00004000                PROVIDE (__alt_heap_limit, 0x4000)
 OUTPUT(fpga_blokus_soft.elf elf32-littlenios2)
 
