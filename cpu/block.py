@@ -98,7 +98,7 @@ fo.write("""
     assign board_y = ((y - {BOARD_TOP}) / {BCELL_UNIT})[3:0];
     assign board_vram_addr = (board_x + board_y * d{NUM_CELL_PER_LINE})[7:0];
     assign leftside_addr = x - {LSIDE_LEFT} + (y - {BOARD_TOP}) * {SIDEBAR_WIDTH};
-    assign rightside_addr = {SIDE_VRAM_SIZE} - (x - {RSIDE_LEFT} + (y - {BOARD_TOP}) * {SIDEBAR_WIDTH});
+    assign rightside_addr = {SIDE_VRAM_SIZE} - 2 - (x - {RSIDE_LEFT} + (y - {BOARD_TOP}) * {SIDEBAR_WIDTH}); // It works but why -2?
 
     assign color =
     x >= {BOARD_LEFT} && y >= {BOARD_TOP} && x < {BOARD_RIGHT} && y < {BOARD_BOTTOM} ? (
